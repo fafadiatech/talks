@@ -10,7 +10,7 @@ class World {
     var width: Int
     var world:[[Cell]] = [[Cell]]()
     var difficultyRatio:Float = 0.20
-    
+
     // generate world at random
     func generateRandom(){
         var difficultCellCounts:Int = 0;
@@ -53,15 +53,32 @@ class World {
         }
     }
     
-    func genChildStates(currentX: Int, currentY: Int) -> Array<Any> {
+    func genChildStates(currentX: Int, currentY: Int) -> [(Int, Int)] {
         var results = [(Int, Int)]()
-        // this is where we implement logic
-        // which will generate child state given current state
+        // assume we're only allowed to move right and down
+        // check if we can move right
+        if(currentX + 1 < width && self.world[currentX + 1][currentY] == Cell.traversable){
+            results.append((currentX + 1, currentY))
+        }
+        
+        if((currentY + 1) < height && self.world[currentX][(currentY + 1)] == Cell.traversable){
+            results.append((currentX, (currentY + 1)))
+        }
         return results
     }
 
     func hasPath(startX: Int, startY: Int, endX: Int, endY: Int) -> Bool {
         // this is where we implement DFS/BFS algorithm
+        var frontier:[(Int, Int)] = [(startX, startY)]
+        while(frontier.count > 0){
+            let currentState:(Int, Int) = frontier.removeLast()
+            print("Currently at \(currentState.0), \(currentState.1)")
+            if(currentState.0 == endX && currentState.1 == endY){
+                return true
+            }
+            let childStates = self.genChildStates(currentX: currentState.0, currentY: currentState.1)
+            frontier.append(contentsOf: childStates)
+        }
         return false
     }
 }
