@@ -1,8 +1,10 @@
 # Graph algorithms in Swift
 
-## Sidharth Shah,
+## Sidharth Shah
 Fafadia Tech
+{Twitter: **@iamsidd**, Github: **sidharthshah**}
 
+Slides: https://github.com/fafadiatech/talks/blob/master/meetup/swift
 
 ---
 
