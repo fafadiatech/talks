@@ -23,7 +23,7 @@ Graphs are representation that specify:
 ![alt text](images/01-anatomy-of-graph.jpg "Anatomy of Graph")
 
 1. Things aka **Verticies/Nodes** {which it represents}
-1. Structure aka **Edges** {in form inteconnection}
+1. Structure aka **Edges** {in form interconnection}
 
 Good reference for getting started: [Graph Data Structures for Beginners](https://adrianmejia.com/blog/2018/05/14/data-structures-for-beginners-graphs-time-complexity-tutorial/#.WyA_46kQfFs.reddit)
 
