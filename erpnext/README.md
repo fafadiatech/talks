@@ -124,6 +124,31 @@ def on_intent(intent_request, session):
 
 ## Voice Assistant: Alexa
 
+Workflow for connecting Alexa to AWS Lambda
+
+1. Create Custom Skill
+    1. Make sure Language matches the one on your Device
+2. Key Concepts
+    1. Invocations
+        1. “Keyword Spotting” for your skill
+    2. Intents
+        1. What we respond with Alexa, Guidelines
+        2. Build in
+            1. FallBackIntent
+            2. CancelIntent
+            3. HelpIntent
+            4. StopIntent
+    3. Utterances
+        1. Mapping of phrases to Intents {E.g. I need help, Please Help Me}
+    4. End Point
+        1. Required for testing Skill
+        2. AWS Lambda: This allows you to create end-points
+            1. Create a New Function {Python 3.6}
+            2. Create a Role
+        3. Click “Alexa Skills Kit” and Paste in the Skill ID from Alexa Skils
+        4. Copy Default Region
+        5. Click Test {Make sure Save Model and Build Model before Testing}
+            1. “alexa run <invocation>”
 
 ## Future Scope
 
