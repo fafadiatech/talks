@@ -73,7 +73,7 @@ Test your API endpoint using
 
 ```
 curl -d “usr=SuperAdministrator&pwd=SuperSecurePasswd” http://localhost:<port_no>/api/method/alexa_integration.api.sales?period=weekly
-``
+```
 
 ## Future Scope
 
