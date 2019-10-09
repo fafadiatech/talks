@@ -75,6 +75,56 @@ Test your API endpoint using
 curl -d “usr=SuperAdministrator&pwd=SuperSecurePasswd” http://localhost:<port_no>/api/method/alexa_integration.api.sales?period=weekly
 ```
 
+### Glue: AWS Lambda
+
+TLDR; version of AWS Lambda: We will have **our service** call **your service**
+
+More details [Why AWS Lambda? 4 Benefits to Building Your Custom Alexa Skill with AWS Lambda](https://developer.amazon.com/blogs/alexa/post/ba9a0041-d842-4908-9f22-96737252dd3e/why-lambda-4-benefits-to-using-aws-lambda-for-your-custom-skill) 
+
+1. You Can Focus on Building Your Voice Experience
+1. You Don’t Need to Provide an SSL Certificate
+1. Lambda Streamlines Access Control and Security
+1. Lambda Is Part of the AWS Free Tier
+
+So what does it really look like?
+
+```python
+def query_erpnext(final_url):
+    """
+    wrapper around existing API built
+    using custom app alexa_integration
+    """
+    f = urllib.request.urlopen(final_url)
+    data = json.loads(f.read().decode('utf-8'))
+    return data['message']
+
+def on_intent(intent_request, session):
+    intent = intent_request['intent']
+    intent_name = intent_request['intent']['name']
+
+    # Dispatch to your skill's intent handlers
+    if intent_name == "QuerySalesDaily":
+        final_response = "Your sales today is 2000"
+        return generate_response(final_response)
+    elif intent_name == "QuerySalesWeekly":
+        final_response = "You weekly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=weekly")
+        return generate_response(final_response)
+    elif intent_name == "QuerySalesMonthly":
+        final_response = "You monthly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=monthly")
+        return generate_response(final_response)
+    elif intent_name == "QuerySalesQuaterly":
+        final_response = "You quaterly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=quaterly")
+        return generate_response(final_response)
+    elif intent_name == "QueryInventoryRedFlags":
+        return generate_response("You're running out of 3 items")
+    elif intent_name == "QueryInventoryWIPValuation":
+        return generate_response("Valuation of your work in progress items is Rupees 55,00,000")
+    return generate_response("Cool!")
+```
+
+## Voice Assistant: Alexa
+
+
 ## Future Scope
 
 1. Security
