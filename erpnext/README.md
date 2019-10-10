@@ -130,16 +130,17 @@ Workflow for connecting Alexa to AWS Lambda
     1. Make sure Language matches the one on your Device
 2. Key Concepts
     1. Invocations
-        1. “Keyword Spotting” for your skill
+        1. “Keyword Spotting” for your skill {e.g. alexa run <my_skill>}
     2. Intents
-        1. What we respond with Alexa, Guidelines
-        2. Build in
-            1. FallBackIntent
-            2. CancelIntent
-            3. HelpIntent
-            4. StopIntent
+        1. What we respond with Alexa, [Guidelines](https://developer.amazon.com/docs/custom-skills/create-the-interaction-model-for-your-skill.html)
+        2. Build in [Intents](https://developer.amazon.com/docs/custom-skills/standard-built-in-intents.html)
+            1. FallBackIntent: What should Alexa do if it fails to identify intent?
+            2. CancelIntent: Cancel action or exit skill completely
+            3. HelpIntent: Ask for help {more verbose description}
+            4. StopIntent: Stop Action but remain in skill
     3. Utterances
         1. Mapping of phrases to Intents {E.g. I need help, Please Help Me}
+        1. Clues Alexa uses to map/classify intent
     4. End Point
         1. Required for testing Skill
         2. AWS Lambda: This allows you to create end-points
