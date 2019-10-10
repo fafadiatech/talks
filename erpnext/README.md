@@ -107,13 +107,13 @@ def on_intent(intent_request, session):
         final_response = "Your sales today is 2000"
         return generate_response(final_response)
     elif intent_name == "QuerySalesWeekly":
-        final_response = "You weekly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=weekly")
+        final_response = "You weekly sales is %s" % query_erpnext("http://X.X.X.X/api/method/alexa_integration.api.sales?period=weekly")
         return generate_response(final_response)
     elif intent_name == "QuerySalesMonthly":
-        final_response = "You monthly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=monthly")
+        final_response = "You monthly sales is %s" % query_erpnext("http://X.X.X.X/api/method/alexa_integration.api.sales?period=monthly")
         return generate_response(final_response)
     elif intent_name == "QuerySalesQuaterly":
-        final_response = "You quaterly sales is %s" % query_erpnext("http://68.183.82.86:83/api/method/alexa_integration.api.sales?period=quaterly")
+        final_response = "You quaterly sales is %s" % query_erpnext("http://X.X.X.X/api/method/alexa_integration.api.sales?period=quaterly")
         return generate_response(final_response)
     elif intent_name == "QueryInventoryRedFlags":
         return generate_response("You're running out of 3 items")
@@ -150,6 +150,43 @@ Workflow for connecting Alexa to AWS Lambda
         4. Copy Default Region
         5. Click Test {Make sure Save Model and Build Model before Testing}
             1. “alexa run <invocation>”
+
+## Step by Step walkthrough
+
+1. Login to Amazon Alexa skills dev console `https://developer.amazon.com/alexa/console/ask`
+1. Click `Create Skill`
+1. Name you skill and make sure in `Default language` you've selected `English (IN)`
+1. Be sure to click on `Custom` skill
+1. Click `Create Skill` on Top Right
+1. Choose a tempalte `Start from Scratch` and click `Choose`
+1. Click `Invocation` and make sure you have two words keyed in, this is what will be used to trigger your skill
+1. Click `Save Model`
+1. Create custom intent by clicking `Add` next to Intent. E.g. `QuerySalesMonthly`
+1. Click on created intent and add sample utteranges e.g.
+    1. `monthly sale`
+    1. `monthly sales`
+    1. `sales last month`
+1. Click `Save Model`
+1. Click `Endpoint`
+1. Click `AWS Lambda ARN`
+1. Login to AWS Developer console `console.aws.amazon.com`
+1. Click `Services` > `Lambda`
+1. Click `Create function`
+1. Give a function name e.g. `erpnext`
+1. For run-time select `Python 3.7`
+1. Click `Create function`
+1. Connect Alexa skill with AWS Lambda by copying `Your Skill ID` from 
+    1. On AWS Lambda screen click `Add trigger`
+    1. Click `Alexa Skill Kit`
+    1. Paste the Skill ID in the form
+1. **Update code in `lambda_function.py`**
+1. Be sure to click `Save` once code is written
+1. Copy and past `ARN` from AWS Lambda's Top Right screen to `Default Region` for Alexa developer console
+1. Click `Save End Point`
+1. Now jump back to Alexa developer console and click `Build Model`
+1. Building the model will take about 15-20 mins, once this is done we can test
+1. Click `Test` and test out the application
+1. Note: The skill is also available on all devices connected to Alexa
 
 ## Future Scope
 
