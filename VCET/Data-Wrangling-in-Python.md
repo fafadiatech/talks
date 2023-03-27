@@ -4,7 +4,7 @@
 Fafadia Tech
 {Twitter: **@iamsidd**, Github: **sidharthshah**, Email: **sidharth@fafadiatech.com**}
 
-Slides: https://github.com/fafadiatech/talks/blob/master/meetup/swift
+Slides: https://github.com/fafadiatech/talks/tree/master/VCET
 
 ---
 
